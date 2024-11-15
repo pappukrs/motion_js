@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion Animation with Tailwind CSS</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Motion CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="container flex flex-col items-center space-y-6">
+    <div class="box bg-blue-500 w-32 h-32 rounded-lg"></div>
+    <button class="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600" id="animateBtn">
+      Animate Box
+    </button>
+  </div>
+
+  <ul class="flex space-x-4">
+    <li class="box bg-red-500 w-16 h-16 rounded"></li>
+    <li class="box bg-yellow-500 w-16 h-16 rounded"></li>
+    <li class="box bg-blue-500 w-16 h-16 rounded"></li>
+  </ul>
+  
+  <script>
+    // Access animate and stagger directly from the Motion object provided by the CDN
+    const { animate, stagger } = Motion;
+
+    // Initial animation
+    animate(".box", { opacity: [0, 1], y: [-20, 0] }, { duration: 1, delay: stagger(0.2) });
+
+    // Animation triggered by the button
+    document.getElementById("animateBtn").addEventListener("click", () => {
+      animate(".box", { rotate: [0, 180], scale: [1, 1.5] }, { duration: 1, easing: "ease-in-out" });
+    });
+  </script>
+</body>
+</html>
