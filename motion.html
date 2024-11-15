@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind and Motion Animations</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Motion CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="box bg-blue-500 w-32 h-32 rounded-lg"></div>
+
+  <ul class="flex space-x-4 mt-6">
+    <li class="box bg-red-500 w-16 h-16 rounded"></li>
+    <li class="box bg-yellow-500 w-16 h-16 rounded"></li>
+    <li class="box bg-blue-500 w-16 h-16 rounded"></li>
+  </ul>
+
+  <script>
+    const { animate, stagger } = Motion;
+
+    // Staggered fade-in animation for each box in the list
+    animate(".box", { opacity: [0, 1], y: [-50, 0] }, { duration: 1, delay: stagger(0.2) });
+
+    // Sequential animations for each box
+    animate(".box", { x: [-100, 0], opacity: [0, 1] }, { duration: 1, delay: stagger(0.4) });
+    
+    // Scale and rotate animation with delay to allow previous animations to complete
+    animate(".box", { scale: [1, 1.2, 1], rotate: [0, 180, 0] }, { duration: 1.5, delay: 2 });
+  </script>
+  
+</body>
+</html>
